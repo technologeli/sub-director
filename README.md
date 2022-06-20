@@ -9,8 +9,10 @@ Sub Director allows you to create *lists* of channels and view their uploads in
 a subscription-like feed.
 
 ## TODO
+- [ ] Next telemetry
 - [ ] Init
-  - [ ] Next.js with TypeScript
+  - [x] Next.js with TypeScript
+  - [ ] Prettier
   - [ ] Tailwind
   - [ ] tRPC
   - [ ] React Query
