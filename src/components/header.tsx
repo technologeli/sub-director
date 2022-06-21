@@ -6,7 +6,7 @@ const Header: NextPage = () => {
   const { data: session } = useSession();
 
   return (
-    <nav
+    <div
       className="px-8 py-4 flex items-center justify-between 
       bg-zinc-50 shadow"
     >
@@ -43,7 +43,7 @@ const Header: NextPage = () => {
           </>
         )}
       </div>
-    </nav>
+    </div>
   );
 };
 
