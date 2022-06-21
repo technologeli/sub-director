@@ -19,7 +19,7 @@ a subscription-like feed.
   - [X] tRPC
   - [X] React Query
   - [X] Prisma
-  - [ ] NextAuth.js
+  - [X] NextAuth.js
   - [ ] YouTube API
 
 - [ ] Set up deployment
