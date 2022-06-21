@@ -12,6 +12,9 @@ export default NextAuth({
       return session;
     },
   },
+  pages: {
+    signIn: "/auth/signin",
+  },
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID,

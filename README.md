@@ -22,6 +22,6 @@ a subscription-like feed.
   - [X] NextAuth.js
   - [ ] YouTube API
 
-- [ ] Set up deployment
-  - [ ] Vercel
-  - [ ] PlanetScale
+- [X] Set up deployment
+  - [X] Vercel
+  - [X] PlanetScale
