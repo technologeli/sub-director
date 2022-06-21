@@ -15,10 +15,10 @@ a subscription-like feed.
 
   - [x] Next.js with TypeScript
   - [X] Prettier
-  - [ ] Tailwind
+  - [X] Tailwind
   - [X] tRPC
-  - [ ] React Query
-  - [ ] Prisma
+  - [X] React Query
+  - [X] Prisma
   - [ ] NextAuth.js
   - [ ] YouTube API
 
