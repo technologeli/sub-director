@@ -28,6 +28,9 @@ export default withTRPC<AppRouter>({
 
     return {
       url,
+      headers: {
+        cookie: ctx?.req?.headers.cookie,
+      },
       /**
        * @link https://react-query.tanstack.com/reference/QueryClient
        */
