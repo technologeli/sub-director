@@ -13,7 +13,7 @@ const Icon: React.FC<{ name: string }> = ({ name }) => {
 
 const ProviderButton: React.FC<{ provider: Provider }> = ({ provider }) => {
   return (
-    <div className="flex justify-center" key={provider.name}>
+    <div className="flex justify-center">
       <button
         className="flex justify-center items-center space-x-4
                 bg-zinc-50 shadow-md rounded px-4 py-2
@@ -33,7 +33,7 @@ const SignIn: NextPage<{ providers: Providers }> = ({ providers }) => {
       <div className="w-96">
         {providers &&
           Object.values(providers).map((provider: Provider) => (
-            <ProviderButton provider={provider} />
+            <ProviderButton key={provider.name} provider={provider} />
           ))}
       </div>
     </Main>
