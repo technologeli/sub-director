@@ -11,7 +11,7 @@ a subscription-like feed.
 ## TODO
 
 - [x] Next telemetry
-- [ ] Init
+- [X] Init
 
   - [x] Next.js with TypeScript
   - [X] Prettier
@@ -20,7 +20,7 @@ a subscription-like feed.
   - [X] React Query
   - [X] Prisma
   - [X] NextAuth.js
-  - [ ] YouTube API
+  - [X] YouTube API
 
 - [X] Set up deployment
   - [X] Vercel
