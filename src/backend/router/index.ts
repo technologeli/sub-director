@@ -3,11 +3,12 @@ import { google } from "googleapis";
 import { getChannelFromSnippet } from "@/backend/utils/yt";
 import { TRPCError } from "@trpc/server";
 import { createRouter } from "@/backend/utils/context";
+import { prisma } from "@/backend/utils/prisma";
 
 export const appRouter = createRouter()
   .query("yt-search", {
     input: z.object({ username: z.string() }),
-    async resolve({ input }) {
+    resolve: async ({ input }) => {
       if (input.username === "") return { channels: [] };
       const service = google.youtube("v3");
       const channels = await service.search.list({
@@ -24,13 +25,30 @@ export const appRouter = createRouter()
       };
     },
   })
-  .query("secret", {
-    resolve: ({ ctx }) => {
-      if (!ctx.session) {
-        throw new TRPCError({ code: "UNAUTHORIZED" });
-      }
+  .query("subdirectories", {
+    resolve: async ({ ctx }) => {
+      if (!ctx.session) throw new TRPCError({ code: "UNAUTHORIZED" });
+
+      const subDirectories = await prisma?.subDirectory.findMany({
+        where: {
+          user: {
+            email: ctx.session.user?.email,
+          },
+        },
+      });
+
+      return { subDirectories };
+    },
+  })
+  .mutation("subdirectories", {
+    input: z.object({
+      name: z.string().min(1, { message: "Required" }),
+    }),
+    resolve: async ({ input, ctx }) => {
+      if (!ctx.session) throw new TRPCError({ code: "UNAUTHORIZED" });
+      console.log(input.name);
       return {
-        secret: "sauce",
+        name: input.name,
       };
     },
   });
