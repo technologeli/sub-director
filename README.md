@@ -25,3 +25,5 @@ a subscription-like feed.
 - [X] Set up deployment
   - [X] Vercel
   - [X] PlanetScale
+
+- [ ] Persist SubDirectories
