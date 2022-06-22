@@ -4,7 +4,7 @@ const Main: React.FC<MainProps> = ({ children, className, ...props }) => {
   return (
     <main
       {...props}
-      className={`bg-zinc-50 h-screen w-screen flex flex-col ${className}`}
+      className={`bg-zinc-100 h-screen w-screen flex flex-col ${className}`}
     >
       {children}
     </main>

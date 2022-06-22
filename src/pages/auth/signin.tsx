@@ -1,29 +1,39 @@
 import Main from "@/components/main";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, NextPage } from "next";
+import { Provider } from "next-auth/providers";
 import { getProviders, signIn } from "next-auth/react";
 import { BsGithub } from "react-icons/bs";
 
 type Providers = ReturnType<typeof getProviders>;
 
 const Icon: React.FC<{ name: string }> = ({ name }) => {
-  if (name === "GitHub") return <BsGithub />;
+  if (name === "GitHub") return <BsGithub size={32} />;
   return null;
 };
 
-const SignIn = ({ providers }: { providers: Providers }) => {
+const ProviderButton: React.FC<{ provider: Provider }> = ({ provider }) => {
+  return (
+    <div className="flex justify-center" key={provider.name}>
+      <button
+        className="flex justify-center items-center space-x-4
+                bg-zinc-50 shadow-md rounded px-4 py-2
+                hover:bg-zinc-200 transition-colors"
+        onClick={() => signIn(provider.id, { callbackUrl: "/" })}
+      >
+        <Icon name={provider.name} />
+        <span>Sign in with {provider.name}</span>
+      </button>
+    </div>
+  );
+};
+
+const SignIn: NextPage<{ providers: Providers }> = ({ providers }) => {
   return (
     <Main className="items-center justify-center">
-      <div className="bg-orange-200 w-96 h-96">
+      <div className="w-96">
         {providers &&
-          Object.values(providers).map((provider) => (
-            <div key={provider.name}>
-              <button
-                className="flex items-center space-x-8 bg-pink-500"
-                onClick={() => signIn(provider.id, { callbackUrl: "/" })}
-              >
-                <Icon name={provider.name} /> Sign in with {provider.name}
-              </button>
-            </div>
+          Object.values(providers).map((provider: Provider) => (
+            <ProviderButton provider={provider} />
           ))}
       </div>
     </Main>
