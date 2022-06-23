@@ -29,10 +29,10 @@ export const appRouter = createRouter()
     resolve: async ({ ctx }) => {
       if (!ctx.session) throw new TRPCError({ code: "UNAUTHORIZED" });
 
-      const subDirectories = await prisma?.subDirectory.findMany({
+      const subDirectories = await prisma.subDirectory.findMany({
         where: {
           user: {
-            email: ctx.session.user?.email,
+            id: ctx.session.user.id,
           },
         },
       });
@@ -46,7 +46,11 @@ export const appRouter = createRouter()
     }),
     resolve: async ({ input, ctx }) => {
       if (!ctx.session) throw new TRPCError({ code: "UNAUTHORIZED" });
-      console.log(input.name);
+      console.log(ctx.session.user.id, input.name);
+      // need user id somehow
+      // const subDirectory = await prisma.subDirectory.create({
+      //
+      // });
       return {
         name: input.name,
       };

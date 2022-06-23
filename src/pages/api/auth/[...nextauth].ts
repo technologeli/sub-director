@@ -7,6 +7,12 @@ const prisma = new PrismaClient();
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
+  callbacks: {
+    session({ session, user }) {
+      session.user.id = user.id;
+      return session; // The return type will match the one returned in `useSession()`
+    },
+  },
   pages: {
     signIn: "/auth/signin",
   },
