@@ -1,8 +1,7 @@
-import Header from "@/components/header";
-import Main from "@/components/main";
 import type { NextPage } from "next";
 import { trpc } from "@/utils/trpc";
 import { useRef, useState } from "react";
+import Shell from "@/components/shell";
 
 const Home: NextPage = () => {
   const [username, setUsername] = useState("");
@@ -12,8 +11,7 @@ const Home: NextPage = () => {
   ]);
   const usernameRef = useRef<HTMLInputElement | null>(null);
   return (
-    <Main>
-      <Header />
+    <Shell noNavbar>
       <input ref={usernameRef} />
       <button onClick={() => setUsername(usernameRef.current?.value || "")}>
         click
@@ -26,7 +24,7 @@ const Home: NextPage = () => {
             <img src={channel.thumbnailURL || ""} />
           </div>
         ))}
-    </Main>
+    </Shell>
   );
 };
 
