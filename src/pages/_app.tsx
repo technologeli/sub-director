@@ -3,14 +3,10 @@ import type { AppProps } from "next/app";
 import { withTRPC } from "@trpc/next";
 import { AppRouter } from "@/backend/router";
 import { SessionProvider } from "next-auth/react";
-import Head from "next/head";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <Head>
-        <title>Sub Director</title>
-      </Head>
       <Component {...pageProps} />
     </SessionProvider>
   );

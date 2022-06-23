@@ -1,13 +1,13 @@
-import { z } from "zod";
 import { google } from "googleapis";
 import { getChannelFromSnippet } from "@/backend/utils/yt";
 import { TRPCError } from "@trpc/server";
 import { createRouter } from "@/backend/utils/context";
 import { prisma } from "@/backend/utils/prisma";
+import { zSubDirectory, zYTSearch } from "@/utils/validators";
 
 export const appRouter = createRouter()
   .query("yt-search", {
-    input: z.object({ username: z.string() }),
+    input: zYTSearch,
     resolve: async ({ input }) => {
       if (input.username === "") return { channels: [] };
       const service = google.youtube("v3");
@@ -30,30 +30,23 @@ export const appRouter = createRouter()
       if (!ctx.session) throw new TRPCError({ code: "UNAUTHORIZED" });
 
       const subDirectories = await prisma.subDirectory.findMany({
-        where: {
-          user: {
-            id: ctx.session.user.id,
-          },
-        },
+        where: { user: { id: ctx.session.user.id } },
       });
 
       return { subDirectories };
     },
   })
   .mutation("subdirectories", {
-    input: z.object({
-      name: z.string().min(1, { message: "Required" }),
-    }),
+    input: zSubDirectory,
     resolve: async ({ input, ctx }) => {
       if (!ctx.session) throw new TRPCError({ code: "UNAUTHORIZED" });
-      console.log(ctx.session.user.id, input.name);
-      // need user id somehow
-      // const subDirectory = await prisma.subDirectory.create({
-      //
-      // });
-      return {
-        name: input.name,
-      };
+      const subDirectory = await prisma.subDirectory.create({
+        data: {
+          userId: ctx.session.user.id,
+          name: input.name,
+        },
+      });
+      return { subDirectory };
     },
   });
 

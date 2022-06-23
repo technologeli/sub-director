@@ -1,18 +1,13 @@
 import Shell from "@/components/shell";
 import { trpc } from "@/utils/trpc";
+import { zSubDirectory } from "@/utils/validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const schema = z.object({
-  name: z.string().min(1, { message: "Required" }),
-});
 
 const CreateSubDirectory: NextPage = () => {
-  const { data: subDirs } = trpc.useQuery(["subdirectories"]);
   const { status } = useSession();
   const router = useRouter();
 
@@ -22,7 +17,7 @@ const CreateSubDirectory: NextPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(zSubDirectory),
   });
 
   if (status === "unauthenticated") router.push("/");
@@ -32,6 +27,7 @@ const CreateSubDirectory: NextPage = () => {
       <form
         className="bg-zinc-300 p-2"
         onSubmit={handleSubmit((d) => {
+          console.log(/[^A-Za-z0-9\-]+/g.test(d.name as string));
           mutation.mutate({ name: d.name as string });
         })}
       >

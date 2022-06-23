@@ -71,6 +71,7 @@ model SubDirectory {
   subscriptions Subscription[]
 
   @@index([userId])
+  @@unique([name, userId])
 }
 
 // save channel id and get all other information afterwards
