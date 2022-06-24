@@ -10,8 +10,13 @@ import { useForm } from "react-hook-form";
 const CreateSubDirectory: NextPage = () => {
   const { status } = useSession();
   const router = useRouter();
+  const utils = trpc.useContext();
 
-  const mutation = trpc.useMutation(["subdirectories"]);
+  const mutation = trpc.useMutation("sub.create", {
+    onSuccess: () => {
+      utils.invalidateQueries("sub.list");
+    },
+  });
   const {
     register,
     handleSubmit,
@@ -27,7 +32,6 @@ const CreateSubDirectory: NextPage = () => {
       <form
         className="bg-zinc-300 p-2"
         onSubmit={handleSubmit((d) => {
-          console.log(/[^A-Za-z0-9\-]+/g.test(d.name as string));
           mutation.mutate({ name: d.name as string });
         })}
       >
@@ -43,9 +47,7 @@ const CreateSubDirectory: NextPage = () => {
         <button type="submit" disabled={mutation.isLoading}>
           Create
         </button>
-        {mutation.error && (
-          <p>Something went wrong! {mutation.error.message}</p>
-        )}
+        {mutation.error && <p>{mutation.error.message}</p>}
       </form>
     </Shell>
   );

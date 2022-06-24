@@ -12,7 +12,7 @@ const NavLink: React.FC<LinkProps> = ({ children, ...props }) => {
 };
 
 const Navbar = () => {
-  const { data: subDirs } = trpc.useQuery(["subdirectories"]);
+  const { data: subDirs } = trpc.useQuery(["sub.list"]);
   return (
     <nav className="bg-zinc-200 w-60 flex flex-col">
       {/* NavLink for every sub-directory */}

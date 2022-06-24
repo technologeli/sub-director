@@ -6,7 +6,7 @@ import Shell from "@/components/shell";
 const Home: NextPage = () => {
   const [username, setUsername] = useState("");
   const { data: ytData, isLoading } = trpc.useQuery([
-    "yt-search",
+    "yt.search",
     { username: username },
   ]);
   const usernameRef = useRef<HTMLInputElement | null>(null);

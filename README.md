@@ -10,10 +10,9 @@ a subscription-like feed.
 
 ## TODO
 
-- [x] Next telemetry
+- [X] Next telemetry
 - [X] Init
-
-  - [x] Next.js with TypeScript
+  - [X] Next.js with TypeScript
   - [X] Prettier
   - [X] Tailwind
   - [X] tRPC
@@ -26,4 +25,4 @@ a subscription-like feed.
   - [X] Vercel
   - [X] PlanetScale
 
-- [ ] Persist SubDirectories
+- [X] Persist SubDirectories

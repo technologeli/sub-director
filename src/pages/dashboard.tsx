@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const Dashboard: NextPage = () => {
-  const { data: subDirs } = trpc.useQuery(["subdirectories"]);
+  const { data: subDirs } = trpc.useQuery(["sub.list"]);
   const { status } = useSession();
   const router = useRouter();
 
