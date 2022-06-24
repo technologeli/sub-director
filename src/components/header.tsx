@@ -4,6 +4,9 @@ import Link from "next/link";
 
 const Header: NextPage = () => {
   const { data: session } = useSession();
+  const url = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}/api/trpc`
+    : "http://localhost:3000/api/trpc";
 
   return (
     <div
@@ -15,6 +18,7 @@ const Header: NextPage = () => {
         {session && session.user ? (
           <>
             <h2>{session.user.name}</h2>
+            <p>{url}</p>
             <button
               className="px-8 py-1 rounded text-zinc-200
             bg-zinc-900 hover:bg-zinc-800 transition-colors"
