@@ -21,7 +21,7 @@ export const subdirectoryRouter = createRouter()
     input: zSubDirectory,
     resolve: async ({ input, ctx }) => {
       if (!ctx.session) throw new TRPCError({ code: "UNAUTHORIZED" });
-      const subDirectory = await prisma.subDirectory
+      const subDirectory = await prisma?.subDirectory
         .create({
           data: {
             userId: ctx.session.user.id,
