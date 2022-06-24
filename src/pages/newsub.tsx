@@ -1,3 +1,5 @@
+import Button from "@/components/button";
+import { Form, TextInput, ErrorText } from "@/components/form";
 import Shell from "@/components/shell";
 import { trpc } from "@/utils/trpc";
 import { zSubDirectory } from "@/utils/validators";
@@ -29,26 +31,32 @@ const CreateSubDirectory: NextPage = () => {
 
   return (
     <Shell subtitle="Create Sub Directory">
-      <form
-        className="bg-zinc-300 p-2"
-        onSubmit={handleSubmit((d) => {
-          mutation.mutate({ name: d.name as string });
-        })}
-      >
-        <div className="flex space-x-4">
-          <label htmlFor="name">
-            Name <span className="text-red-500">*</span>
-          </label>
-          <input className="rounded px-2" type="text" {...register("name")} />
-        </div>
-        {errors.name?.message && (
-          <p className="text-red-500">{errors.name?.message}</p>
-        )}
-        <button type="submit" disabled={mutation.isLoading}>
-          Create
-        </button>
-        {mutation.error && <p>{mutation.error.message}</p>}
-      </form>
+      <div className="px-4 py-4">
+        <Form
+          onSubmit={handleSubmit((d) => {
+            mutation.mutate({ name: d.name as string });
+          })}
+        >
+          <h3 className="pt-2 text-center text-xl font-semibold">
+            New Subdirectory
+          </h3>
+          <TextInput
+            label="Name"
+            aria-required
+            name="name"
+            register={register}
+            error={errors.name}
+          />
+          <Button
+            className="py-2 font-bold"
+            type="submit"
+            disabled={mutation.isLoading}
+          >
+            Create
+          </Button>
+          {mutation.error && <ErrorText>{mutation.error.message}</ErrorText>}
+        </Form>
+      </div>
     </Shell>
   );
 };

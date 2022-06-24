@@ -11,6 +11,7 @@ export const subdirectoryRouter = createRouter()
 
       const subDirectories = await prisma.subDirectory.findMany({
         where: { user: { id: ctx.session.user.id } },
+        orderBy: { name: "asc" },
       });
 
       return { subDirectories };

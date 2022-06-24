@@ -29,7 +29,9 @@ const Shell: React.FC<ShellProps> = ({
         ) : (
           <div className="flex flex-grow">
             {!noNavbar && status === "authenticated" && <Navbar />}
-            <div {...props}>{children}</div>
+            <div className="flex-grow" {...props}>
+              {children}
+            </div>
           </div>
         )}
       </Main>
