@@ -49,7 +49,9 @@ export const TextInput: React.FC<TextInputProps> = ({
         {error?.message && <ErrorText>{error?.message}</ErrorText>}
       </div>
       <input
-        className={`rounded border border-zinc-300 bg-zinc-100 px-2 focus:bg-zinc-100 ${className}`}
+        className={`rounded border border-zinc-300 bg-zinc-100 px-2 
+        focus:border-zinc-300 focus:bg-zinc-100 focus:outline-none focus:ring-2
+        focus:ring-amber-500 focus:ring-offset-2 ${className}`}
         type="text"
         {...props}
         {...register(name || "")}

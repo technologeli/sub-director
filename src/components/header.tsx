@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import Button from "@/components/button";
 
 const Header: NextPage = () => {
   const { data: session } = useSession();
@@ -15,13 +16,7 @@ const Header: NextPage = () => {
         {session && session.user ? (
           <>
             <h2>{session.user.name}</h2>
-            <button
-              className="rounded bg-zinc-900 px-8 py-1
-            text-zinc-200 transition-colors hover:bg-zinc-800"
-              onClick={() => signOut()}
-            >
-              Sign Out
-            </button>
+            <Button onClick={() => signOut()}>Sign Out</Button>
           </>
         ) : (
           <>

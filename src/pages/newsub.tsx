@@ -35,7 +35,10 @@ const CreateSubDirectory: NextPage = () => {
         <div className="max-w-3xl flex-grow px-4 py-4">
           <Form
             onSubmit={handleSubmit((d) => {
-              mutation.mutate({ name: d.name as string });
+              mutation.mutate(
+                { name: d.name as string },
+                { onSuccess: () => router.push(`/sub/${d.name}`) }
+              );
             })}
           >
             <h3 className="pt-2 text-center text-xl font-semibold">
