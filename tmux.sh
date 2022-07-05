@@ -24,10 +24,15 @@ tmux rename-window -t "$sess" "shadow"
 s="pscale connect sub-director sub-director-shadow --port 3310"
 tmux send-keys -t "$sess:shadow" "$s" C-m
 
-# window 3: dev
+# window 4: dev
 tmux new-window -t "$sess"
 tmux rename-window -t "$sess" "dev"
 tmux send-keys -t "$sess:dev" "npm run dev" C-m
+
+# window 5: prisma studio
+tmux new-window -t "$sess"
+tmux rename-window -t "$sess" "prisma"
+tmux send-keys -t "$sess:prisma" "npx prisma studio" C-m
 
 
 # display window 1
