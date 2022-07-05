@@ -10,19 +10,19 @@ a subscription-like feed.
 
 ## TODO
 
-- [X] Next telemetry
-- [X] Init
-  - [X] Next.js with TypeScript
-  - [X] Prettier
-  - [X] Tailwind
-  - [X] tRPC
-  - [X] React Query
-  - [X] Prisma
-  - [X] NextAuth.js
-  - [X] YouTube API
-
-- [X] Set up deployment
-  - [X] Vercel
-  - [X] PlanetScale
-
-- [X] Persist SubDirectories
+- [x] Next telemetry
+- [x] Init
+  - [x] Next.js with TypeScript
+  - [x] Prettier
+  - [x] Tailwind
+  - [x] tRPC
+  - [x] React Query
+  - [x] Prisma
+  - [x] NextAuth.js
+  - [x] YouTube API
+- [x] Set up deployment
+  - [x] Vercel
+  - [x] PlanetScale
+- [x] Persist SubDirectories
+- [x] Tailwind Forms
+- [x] Tailwind Class Sorting
