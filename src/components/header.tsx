@@ -8,8 +8,8 @@ const Header: NextPage = () => {
 
   return (
     <div
-      className="flex items-center justify-between bg-zinc-50 px-8 
-      py-4 shadow"
+      className="z-10 flex items-center justify-between bg-brand-fill px-8 
+      py-4 shadow-md"
     >
       <h1 className="text-3xl font-bold">Sub Director</h1>
       <div className="flex items-center space-x-4">
@@ -22,19 +22,13 @@ const Header: NextPage = () => {
           <>
             <Link href="about">
               <span
-                className="text-zinc-600 transition-colors 
-            hover:cursor-pointer hover:text-zinc-900"
+                className="text-brand-fill-inverted transition-colors 
+            hover:cursor-pointer hover:text-opacity-80"
               >
                 About
               </span>
             </Link>
-            <button
-              className="rounded bg-zinc-900 px-8 py-1
-            text-zinc-200 transition-colors hover:bg-zinc-800"
-              onClick={() => signIn()}
-            >
-              Sign In
-            </button>
+            <Button onClick={() => signIn()}>Sign In</Button>
           </>
         )}
       </div>

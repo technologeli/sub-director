@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 79 70 229;
+    --color-error: 239 68 68;
+    --color-button-fill: 79 70 229;
+    --color-button-text: 250 250 250;
+  }
+  .theme-dark {
+    --color-muted: 63 63 70;
+    --color-accent: 82 82 91;
+    --color-fill: 82 82 91;
+    --color-fill-secondary: 103 103 118;
+    --color-fill-inverted: 250 250 250;
+    --color-button-fill-inverted: 250 250 250;
+    --color-button-text-inverted: 24 24 27;
+    --color-text: 250 250 250;
+    --color-text-inverted: 24 24 27;
+  }
+  .theme-light {
+    --color-muted: 244 244 245;
+    --color-accent: 212 212 216;
+    --color-fill: 250 250 250;
+    --color-fill-secondary: 212 212 216;
+    --color-fill-inverted: 82 82 91;
+    --color-button-fill-inverted: 24 24 27;
+    --color-button-text-inverted: 24 24 27;
+    --color-text: 24 24 27;
+    --color-text-inverted: 250 250 250;
+  }
+}

@@ -11,8 +11,8 @@ const NavLink: React.FC<LinkProps> = ({ children, highlight, ...props }) => {
     <Link {...props}>
       <button
         className={`rounded px-4 py-1 text-left transition hover:z-10 
-        hover:bg-zinc-200 hover:shadow-md active:bg-zinc-50 
-        ${highlight && "z-10 bg-zinc-200 shadow-md"}`}
+        hover:bg-brand-muted hover:shadow-md active:bg-brand-fill
+        ${highlight && "z-10 bg-brand-muted shadow-md"}`}
       >
         {children}
       </button>
@@ -25,7 +25,7 @@ const Navbar = () => {
   const router = useRouter();
   const { name } = router.query;
   return (
-    <nav className="flex w-60 flex-col bg-zinc-300 px-4 py-1">
+    <nav className="flex w-60 flex-col bg-brand-fill-secondary px-4 py-1">
       <WithIcon icon={<BsFolderFill />}>
         <h2 className="py-2 text-lg">Your Subdirectories</h2>
       </WithIcon>

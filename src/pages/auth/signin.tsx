@@ -16,8 +16,8 @@ const ProviderButton: React.FC<{ provider: Provider }> = ({ provider }) => {
     <div className="flex justify-center">
       <button
         className="flex items-center justify-center space-x-4
-                rounded bg-zinc-50 px-4 py-2 shadow-md
-                transition-colors hover:bg-zinc-200"
+                rounded bg-brand-fill px-4 py-2 shadow-md
+                transition-colors hover:bg-brand-muted"
         onClick={() => signIn(provider.id, { callbackUrl: "/" })}
       >
         <Icon name={provider.name} />

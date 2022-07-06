@@ -8,7 +8,8 @@ export const Form: React.FC<FormProps> = ({
 }) => {
   return (
     <form
-      className={`flex flex-col space-y-4 rounded-lg bg-zinc-50 px-20 py-10 shadow ${className}`}
+      className={`flex flex-col space-y-4 rounded-lg bg-brand-fill px-20 py-10 
+      shadow ${className}`}
       {...props}
     >
       {children}
@@ -23,7 +24,7 @@ export const ErrorText: React.FC<ErrorProps> = ({
   ...props
 }) => {
   return (
-    <p className={`text-center text-red-500 ${className}`} {...props}>
+    <p className={`text-center text-brand-error ${className}`} {...props}>
       {children}
     </p>
   );
@@ -49,9 +50,9 @@ export const TextInput: React.FC<TextInputProps> = ({
         {error?.message && <ErrorText>{error?.message}</ErrorText>}
       </div>
       <input
-        className={`rounded border border-zinc-300 bg-zinc-100 px-2 
-        focus:border-zinc-300 focus:bg-zinc-100 focus:outline-none focus:ring-2
-        focus:ring-amber-500 focus:ring-offset-2 ${className}`}
+        className={`rounded border border-brand-accent bg-brand-muted px-2 
+        focus:border-brand-accent focus:bg-brand-muted focus:outline-none
+        focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-brand-fill ${className}`}
         type="text"
         {...props}
         {...register(name || "")}

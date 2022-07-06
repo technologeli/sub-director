@@ -11,7 +11,7 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body className="bg-zinc-100">
+      <body className="theme-dark bg-brand-muted text-brand-text">
         <Main />
         <NextScript />
       </body>
