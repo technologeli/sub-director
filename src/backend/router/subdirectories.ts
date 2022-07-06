@@ -17,6 +17,25 @@ export const subdirectoryRouter = createRouter()
       return { subDirectories };
     },
   })
+  .query("get", {
+    input: zSubDirectory,
+    resolve: async ({ input, ctx }) => {
+      if (!ctx.session) throw new TRPCError({ code: "UNAUTHORIZED" });
+      const subDirectory = await prisma.subDirectory.findUnique({
+        where: {
+          name_userId: { name: input.name, userId: ctx.session.user.id },
+        },
+        include: { subscriptions: true },
+      });
+
+      if (!subDirectory)
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: `You do not have a subdirectory named ${input.name}.`,
+        });
+      return { subDirectory };
+    },
+  })
   .mutation("create", {
     input: zSubDirectory,
     resolve: async ({ input, ctx }) => {

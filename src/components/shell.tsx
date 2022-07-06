@@ -3,19 +3,24 @@ import Main from "@/components/main";
 import Header from "@/components/header";
 import Navbar from "@/components/navbar";
 import { useSession } from "next-auth/react";
+import Loading from "@/components/loading";
 
 type ShellProps = React.ComponentProps<"div"> & {
   subtitle?: string;
   noNavbar?: boolean;
+  loading?: boolean;
 };
 
 const Shell: React.FC<ShellProps> = ({
   subtitle,
   noNavbar,
+  loading,
   children,
   ...props
 }) => {
   const { status } = useSession();
+
+  if (status === "loading" || loading) return <Loading />;
 
   return (
     <>
@@ -24,16 +29,12 @@ const Shell: React.FC<ShellProps> = ({
       </Head>
       <Main>
         <Header />
-        {status === "loading" ? (
-          <img src="/rings.svg" />
-        ) : (
-          <div className="flex flex-grow">
-            {!noNavbar && status === "authenticated" && <Navbar />}
-            <div className="flex-grow" {...props}>
-              {children}
-            </div>
+        <div className="flex flex-grow">
+          {!noNavbar && status === "authenticated" && <Navbar />}
+          <div className="flex-grow" {...props}>
+            {children}
           </div>
-        )}
+        </div>
       </Main>
     </>
   );
